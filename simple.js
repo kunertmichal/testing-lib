@@ -1,8 +1,8 @@
-const sum = (a, b) => a - b
+const sum = (a, b) => new Promise((resolve) => resolve(a - b))
 const subtract = (a, b) => a - b
 
-test('sum adds numbers', () => {
-  const result = sum(3, 7)
+test('sum adds numbers', async () => {
+  const result = await sum(3, 7)
   const expected = 10
   expect(result).toBe(expected)
 })
@@ -13,9 +13,9 @@ test('subtract subtracts numbers', () => {
   expect(result).toBe(expected)
 })
 
-function test(title, callback) {
+async function test(title, callback) {
   try {
-    callback()
+    await callback()
     console.log(`✅ ${title}`)
   } catch (error) {
     console.error(`❌ ${error}`)
